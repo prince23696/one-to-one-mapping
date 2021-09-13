@@ -1,9 +1,6 @@
 package com.Customer.Oneto_OneDemo.Entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -14,19 +11,18 @@ public class Address implements Serializable {
     private String street;
     private String city;
     private String state;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Customer customer;
 
     public Address() {
     }
 
-    public Address(int id) {
-        this.id = id;
-    }
-
-    public Address(int id, String street, String city, String state) {
+    public Address(int id, String street, String city, String state, Customer customer) {
         this.id = id;
         this.street = street;
         this.city = city;
         this.state = state;
+        this.customer = customer;
     }
 
     public int getId() {
@@ -61,6 +57,14 @@ public class Address implements Serializable {
         this.state = state;
     }
 
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
     @Override
     public String toString() {
         return "Address{" +
@@ -68,6 +72,7 @@ public class Address implements Serializable {
                 ", street='" + street + '\'' +
                 ", city='" + city + '\'' +
                 ", state='" + state + '\'' +
+                ", customer=" + customer +
                 '}';
     }
 }

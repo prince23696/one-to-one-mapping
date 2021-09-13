@@ -1,6 +1,8 @@
 package com.Customer.Oneto_OneDemo.Service;
 
+import com.Customer.Oneto_OneDemo.Entity.Address;
 import com.Customer.Oneto_OneDemo.Entity.Customer;
+import com.Customer.Oneto_OneDemo.Repository.AddressRepository;
 import com.Customer.Oneto_OneDemo.Repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +13,8 @@ import java.util.List;
 public class CustomerServiceImpl implements CustomerService {
     @Autowired
     CustomerRepository customerRepository;
+    @Autowired
+    AddressRepository addressRepository;
 
     @Override
     public List<Customer> getAll() {
@@ -33,7 +37,9 @@ public class CustomerServiceImpl implements CustomerService {
         Customer customer1 = customerRepository.findById(id).get();
         customer1.setFname(customer.getFname());
         customer1.setLname(customer.getLname());
-        customer1.setAddress(customer.getAddress());
+        //customer1.setAddress(customer.getAddress());
+        Address adrress= customer.getAddress();
+
         customerRepository.save(customer1);
         return customer1;
     }

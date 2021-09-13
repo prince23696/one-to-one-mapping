@@ -32,6 +32,7 @@ public class CustmerController {
     @PostMapping("/save")
     public Customer addCustomer(@RequestBody Customer customer) {
         customerService.addCustomer(customer);
+
         return customer;
     }
 

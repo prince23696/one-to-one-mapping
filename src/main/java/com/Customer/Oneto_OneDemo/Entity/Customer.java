@@ -10,8 +10,8 @@ public class Customer implements Serializable {
     private int id;
     private String fname;
     private String lname;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="address")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "customer")
+    @JoinColumn(name="address_id")
     private Address address;
 
     public Customer() {
