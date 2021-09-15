@@ -1,5 +1,7 @@
 package com.Customer.Oneto_OneDemo.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -11,13 +13,14 @@ public class Address implements Serializable {
     private String street;
     private String city;
     private String state;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL,targetEntity = Customer.class)
+    @JsonBackReference
     private Customer customer;
 
     public Address() {
     }
 
-    public Address(int id, String street, String city, String state, Customer customer) {
+    public Address(int id, String street, String city, String state,Customer customer) {
         this.id = id;
         this.street = street;
         this.city = city;

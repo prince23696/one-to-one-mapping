@@ -13,11 +13,9 @@ import java.util.List;
 public class CustomerServiceImpl implements CustomerService {
     @Autowired
     CustomerRepository customerRepository;
-    @Autowired
-    AddressRepository addressRepository;
 
     @Override
-    public List<Customer> getAll() {
+    public List<Customer> getAllCustomer() {
         return (List<Customer>) customerRepository.findAll();
     }
 
@@ -37,9 +35,7 @@ public class CustomerServiceImpl implements CustomerService {
         Customer customer1 = customerRepository.findById(id).get();
         customer1.setFname(customer.getFname());
         customer1.setLname(customer.getLname());
-        //customer1.setAddress(customer.getAddress());
-        Address adrress= customer.getAddress();
-
+        customer1.setAddress(customer.getAddress());
         customerRepository.save(customer1);
         return customer1;
     }

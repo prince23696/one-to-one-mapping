@@ -8,15 +8,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-public class CustmerController {
+public class CustomerController {
 
     @Autowired
     CustomerService customerService;
-
-    @GetMapping("/home")
-    public String demo() {
-        return " this is demo get api";
-    }
 
     @GetMapping("getCustomer/{id}")
     public Customer getCustomer(@PathVariable int id) {
@@ -25,8 +20,8 @@ public class CustmerController {
     }
 
     @GetMapping("/getCustomers")
-    public List<Customer> getAll() {
-        return customerService.getAll();
+    public List<Customer> getAllCustomer() {
+        return customerService.getAllCustomer();
     }
 
     @PostMapping("/save")

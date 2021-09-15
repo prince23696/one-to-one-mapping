@@ -1,5 +1,8 @@
 package com.Customer.Oneto_OneDemo.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -10,8 +13,9 @@ public class Customer implements Serializable {
     private int id;
     private String fname;
     private String lname;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "customer")
-    @JoinColumn(name="address_id")
+    @OneToOne(mappedBy = "customer",targetEntity = Address.class,cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id")
+    @JsonManagedReference
     private Address address;
 
     public Customer() {
